@@ -5,15 +5,12 @@ from langchain_chroma import Chroma
 
 EMBED_MODEL = "nomic-embed-text"
 
-# Cross-platform resolution: looks for a DB_PATH env variable. 
-# Fallback looks for a local folder structure: your_project/data/ChromaDB
 DEFAULT_DB_DIR = str(Path(__file__).resolve().parent.parent / "data" / "ChromaDB")
 BASE_DB_DIR = os.getenv("DB_PATH", DEFAULT_DB_DIR)
 
 def get_vectorstore(chunk_size):
     embeddings = OllamaEmbeddings(model=EMBED_MODEL)
-    
-    # Safe cross-platform paths using os.path.join
+
     book1_path = os.path.join(BASE_DB_DIR, "davidson_db")
     book2_path = os.path.join(BASE_DB_DIR, "harrison_db")
     book3_path = os.path.join(BASE_DB_DIR, "oxford_hb_db")
