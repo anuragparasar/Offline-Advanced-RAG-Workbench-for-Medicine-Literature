@@ -1,12 +1,10 @@
 import streamlit as st
 import requests
 
-# Define where your FastAPI backend is running
 API_URL = "http://localhost:8000"
 
 st.set_page_config(page_title="Offline Medical RAG Workbench", layout="wide")
 
-# 1. Initialize default session_state values safely
 defaults = {
     "chunk_size": 1000,
     "k1": 5, "k2": 5, "k3": 5,
@@ -24,7 +22,6 @@ for key, value in defaults.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
-# Helper function to package settings
 def get_payload(question_text: str):
     return {
         "question": question_text,
@@ -131,14 +128,11 @@ with tab_settings:
     
     st.toggle("SHUFFLE", key="shuffle_toggle")
     st.toggle("RERANK", key="rerank_toggle")
-    
-    # 2. Dynamically calculate max possible K based on active options
+
     max_k = st.session_state.k1 + st.session_state.k2 + st.session_state.k3
     if st.session_state.hybrid_toggle:
         max_k += st.session_state.hk1 + st.session_state.hk2 + st.session_state.hk3
-        
-    # 3. FIXED: Adjust top_k directly in state BEFORE drawing the slider 
-    # This prevents out-of-bounds crashes without using the conflicting 'value' parameter
+
     if st.session_state.top_k > max_k:
         st.session_state.top_k = max_k
     elif st.session_state.top_k < 1:
