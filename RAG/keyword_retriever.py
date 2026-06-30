@@ -5,8 +5,6 @@ from pathlib import Path
 from rank_bm25 import BM25Okapi
 from langchain_core.documents import Document
 
-# Cross-platform resolution: looks for a BM25_PATH env variable.
-# Fallback looks for a local folder structure: your_project/data/bm25
 DEFAULT_BM25_DIR = str(Path(__file__).resolve().parent.parent / "data" / "bm25")
 BASE_BM25_DIR = os.getenv("BM25_PATH", DEFAULT_BM25_DIR)
 
@@ -49,7 +47,6 @@ def search_one_book(bm25_data, tokenized_query, k):
 def keyword_search(chunk_size, query, k1, k2, k3):
     tokenized_query = tokenize(query)
 
-    # Safe cross-platform string formatting and path construction
     bm1_path = os.path.join(BASE_BM25_DIR, f"bm25_book1_{chunk_size}.pkl")
     bm2_path = os.path.join(BASE_BM25_DIR, f"bm25_book2_{chunk_size}.pkl")
     bm3_path = os.path.join(BASE_BM25_DIR, f"bm25_book3_{chunk_size}.pkl")
