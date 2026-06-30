@@ -7,8 +7,8 @@ import shutil
 
 # ===== CHANGE ONLY THIS PART =====
 
-PDF_PATH = r"C:\Users\Anurag Parasar Mund\Desktop\langchain\medicalAI\books\book3.pdf"
-DB_PATH = r"C:\Users\Anurag Parasar Mund\Desktop\langchain\medicalAI\oxford_hb_db"
+PDF_PATH = "book3.pdf"
+DB_PATH = "oxford_hb_db"
 
 COLLECTION_NAME = "book3_1500"
 
