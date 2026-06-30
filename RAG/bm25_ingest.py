@@ -7,7 +7,7 @@ from rank_bm25 import BM25Okapi
 # ===== CHANGE ONLY THIS PART =====
 CHUNK_SIZE = 1500
 
-DB_PATH = r"C:\Users\Anurag Parasar Mund\Desktop\langchain\medicalAI\oxford_hb_db"
+DB_PATH = "oxford_hb_db"
 SAVE_PATH = f"bm25_book3_{CHUNK_SIZE}.pkl"
 
 COLLECTION_NAME = f"book3_{CHUNK_SIZE}"
